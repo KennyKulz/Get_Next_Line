@@ -6,11 +6,9 @@
 /*   By: kchikwam <kchikwam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 09:35:38 by kchikwam          #+#    #+#             */
-/*   Updated: 2024/07/21 09:27:53 by kchikwam         ###   ########.fr       */
+/*   Updated: 2024/07/21 09:38:05 by kchikwam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "get_next_line.h"
 
 #include "get_next_line.h"
 
@@ -26,11 +24,11 @@ static char	*get_line(char **saved)
 
 	if (!*saved)
 		return (NULL);
-	newline_pos = str_chr(*saved, '\n');
+	newline_pos = ft_strchr(*saved, '\n');
 	if (newline_pos)
 	{
-		line = str_dup(*saved, newline_pos - *saved + 1);
-		new_saved = str_dup(newline_pos + 1);
+		line = ft_strdup(*saved, newline_pos - *saved + 1);
+		new_saved = ft_strdup(newline_pos + 1);
 		free(*saved);
 		*saved = new_saved;
 		if (**saved == '\0')
@@ -41,7 +39,7 @@ static char	*get_line(char **saved)
 	}
 	else
 	{
-		line = str_dup(*saved);
+		line = ft_strdup(*saved);
 		free(*saved);
 		*saved = NULL;
 	}
@@ -59,10 +57,10 @@ static int	read_to_saved(int fd, char **saved)
 		return (bytes_read);
 	buf[bytes_read] = '\0';
 	if (!*saved)
-		*saved = str_dup(buf);
+		*saved = ft_strdup(buf);
 	else
 	{
-		temp = str_join(*saved, buf);
+		temp = ft_strjoin(*saved, buf);
 		free(*saved);
 		*saved = temp;
 	}
@@ -78,7 +76,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	bytes_read = 1;
-	while (bytes_read > 0 && !str_chr(saved, '\n'))
+	while (bytes_read > 0 && !ft_strchr(saved, '\n'))
 		bytes_read = read_to_saved(fd, &saved);
 	if (bytes_read < 0)
 	{
