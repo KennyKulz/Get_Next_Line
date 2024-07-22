@@ -15,9 +15,13 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <string.h>
+# include <stdio.h>
 
 char	*get_next_line(int fd);
-int		ft_strlen(const char *s);
-char	*ft_strdup(char	*src);
+size_t	ft_str_len(const char *s);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_str_dup_len(const char *src, size_t len);
+char	*ft_strchr(const char *s, int c);
 
 #endif
