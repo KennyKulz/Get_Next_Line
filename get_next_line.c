@@ -6,7 +6,7 @@
 /*   By: kchikwam <kchikwam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 09:35:38 by kchikwam          #+#    #+#             */
-/*   Updated: 2024/07/22 21:20:52 by kchikwam         ###   ########.fr       */
+/*   Updated: 2024/07/23 21:30:26 by kchikwam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ static int	read_to_saved(int fd, char **saved)
 	if (!saved)
 		return (-1);
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
-	printf("Read %d bytes\n", bytes_read); // Debug statement
 	if (bytes_read <= 0)
 		return (bytes_read);
 	buffer[bytes_read] = '\0';
@@ -80,7 +79,6 @@ static int	read_to_saved(int fd, char **saved)
 	}
 	else
 		*saved = ft_str_dup_len(buffer, ft_str_len(buffer));
-	printf("Saved buffer: %s\n", *saved); // Debug statement
 	return (bytes_read);
 }
 
@@ -105,7 +103,5 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	line = get_line(&saved);
-	printf("Extracted line: %s\n", line); // Debug statement
 	return (line);
 }
-
